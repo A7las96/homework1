@@ -1,4 +1,5 @@
 ﻿
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -31,13 +32,13 @@ int main(int argc, const char* argv[]) {
 		cin.get();
 		cout << "Введите строку для шифрования\n";
 		getline(cin, line);
-		if (line.length() % 2 != 0)
-			line.push_back(' ');
 		for (unsigned int i = 0; i < line.length(); i += 2)
 		{
 			symbols.clear();
 			symbols.push_back(line[i]);
-			symbols.push_back(line[i + 1]);
+			if (i + 1 < line.length())
+				symbols.push_back(line[i + 1]);
+			else symbols.push_back(0u);
 			memcpy(&str, &symbols[0], 2);
 			str = str ^ gamma;
 			for (int j = 0; j < 4; j++)
